@@ -5,7 +5,7 @@ A Python calculator with basic, scientific, and programmer operations.
 ## Setup Guide
 
 ### Prerequisites
-- Python 3.6 or higher
+- Python 3.12.11
 
 ### Installation
 
@@ -17,7 +17,7 @@ A Python calculator with basic, scientific, and programmer operations.
 
 2. **Install dependencies**
    ```bash
-   pip install -r requirements.txt
+   pip3 install -r requirements.txt
    ```
 
 3. **Run the calculator**
