@@ -1,0 +1,32 @@
+import math
+from calculator import Calculator
+
+
+def test_addition_and_subtraction_and_multiplication():
+    calc = Calculator()
+    assert calc.basic_operations(2, 3, '+') == 5
+    assert calc.basic_operations(5, 2, '-') == 3
+    assert calc.basic_operations(4, 3, '*') == 12
+
+
+def test_division_and_division_by_zero():
+    calc = Calculator()
+    assert calc.basic_operations(8, 2, '/') == 4
+    # division by zero returns inf according to implementation
+    result = calc.basic_operations(1, 0, '/')
+    assert result == float('inf')
+
+
+def test_power_and_modulo():
+    calc = Calculator()
+    assert calc.basic_operations(2, 3, '^') == 8
+    assert calc.basic_operations(10, 3, '%') == 1
+    # modulo by zero returns nan
+    mod_zero = calc.basic_operations(5, 0, '%')
+    assert math.isnan(mod_zero)
+
+
+def test_last_result_is_set():
+    calc = Calculator()
+    calc.basic_operations(7, 3, '+')
+    assert calc.get_last_result() == 10
