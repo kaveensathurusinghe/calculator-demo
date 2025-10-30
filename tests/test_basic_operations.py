@@ -1,5 +1,6 @@
 import math
-from calculator import Calculator
+import pytest
+from calculator import Calculator, CalculatorMode
 
 
 def test_addition_and_subtraction_and_multiplication():
@@ -30,3 +31,19 @@ def test_last_result_is_set():
     calc = Calculator()
     calc.basic_operations(7, 3, '+')
     assert calc.get_last_result() == 10
+
+
+def test_invalid_operation_raises_error():
+    """Test that invalid operations raise ValueError"""
+    calc = Calculator()
+    with pytest.raises(ValueError, match="Unsupported operation: invalid"):
+        calc.basic_operations(1, 2, 'invalid')
+
+
+def test_clear_resets_last_result():
+    """Test that clear() resets last_result to None"""
+    calc = Calculator()
+    calc.basic_operations(5, 3, '+')
+    assert calc.get_last_result() == 8
+    calc.clear()
+    assert calc.get_last_result() is None

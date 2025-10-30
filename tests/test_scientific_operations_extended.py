@@ -55,3 +55,53 @@ def test_mode_switching_with_scientific():
     
     # Results should be the same
     assert result1 == result2
+
+
+def test_store_operation():
+    """Test storing value in memory"""
+    calc = Calculator()
+    result = calc.memory_operations('store', 42.5)
+    assert result == 42.5
+    assert calc.memory == 42.5
+
+
+def test_recall_operation():
+    """Test recalling value from memory"""
+    calc = Calculator()
+    calc.memory = 15.7
+    result = calc.memory_operations('recall')
+    assert result == 15.7
+
+
+def test_add_to_memory():
+    """Test adding value to memory"""
+    calc = Calculator()
+    calc.memory = 10.0
+    result = calc.memory_operations('add', 5.0)
+    assert result == 15.0
+    assert calc.memory == 15.0
+
+
+def test_subtract_from_memory():
+    """Test subtracting value from memory"""
+    calc = Calculator()
+    calc.memory = 20.0
+    result = calc.memory_operations('subtract', 7.0)
+    assert result == 13.0
+    assert calc.memory == 13.0
+
+
+def test_clear_memory():
+    """Test clearing memory"""
+    calc = Calculator()
+    calc.memory = 99.9
+    result = calc.memory_operations('clear')
+    assert result == 0.0
+    assert calc.memory == 0.0
+
+
+def test_invalid_memory_operation():
+    """Test invalid memory operation raises error"""
+    calc = Calculator()
+    with pytest.raises(ValueError, match="Unsupported memory operation: invalid"):
+        calc.memory_operations('invalid', 10.0)
