@@ -8,10 +8,9 @@ from calculator import Calculator
     (10, 5, '*', 50),
     (10, 5, '/', 2),
 ])
-def test_basic_operations_parametrized(a, b, operation, expected):
+def test_basic_operations_parametrized(calculator, a, b, operation, expected):
     """Parametrized test showing multiple test cases at once"""
-    calc = Calculator()
-    result = calc.basic_operations(a, b, operation)
+    result = calculator.basic_operations(a, b, operation)
     assert result == expected
 
 @pytest.mark.parametrize("angle,expected", [
@@ -19,8 +18,7 @@ def test_basic_operations_parametrized(a, b, operation, expected):
     (30, 0.5),
     (90, 1.0),
 ])
-def test_sine_values(angle, expected):
+def test_sine_values(calculator, angle, expected):
     """Test sine function with different angles"""
-    calc = Calculator()
-    result = calc.scientific_operations(angle, 'sin')
+    result = calculator.scientific_operations(angle, 'sin')
     assert round(result, 1) == expected
